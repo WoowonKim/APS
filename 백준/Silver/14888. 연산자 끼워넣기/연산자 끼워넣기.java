@@ -1,41 +1,55 @@
 import java.util.Scanner;
 
 public class Main {
-	static int[] a, op;
-	static int N, m, M;
+	static int[] nums, op;
+	static int N;
+	static int max, min;
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		N = sc.nextInt();
-		m = 1<<30;
-		M = 1<<31;
-		a = new int[N];
+		max = Integer.MIN_VALUE;
+		min = Integer.MAX_VALUE;
+		nums = new int[N];
+		for (int i = 0; i < N; i++) {
+			nums[i] = sc.nextInt();
+		}
 		op = new int[4];
-		for(int i=0; i<N; i++) a[i] = sc.nextInt();
-		for(int i=0; i<4; i++) op[i] = sc.nextInt();
-		recur(1,a[0]);
-		System.out.printf("%d\n%d",M,m);
-		
+		for (int i = 0; i < 4; i++) {
+			op[i] = sc.nextInt();
+		}
+		recur(nums[0], 1);
+		System.out.printf("%d\n%d", max, min);
+		sc.close();
 	}
-	
-	static void recur(int n, int val) {
-		if(n == N) {
-			if(M < val) M = val;
-			if(m > val) m = val;
+
+	public static void recur(int val, int idx) {
+		if (idx == N) {
+			if (val > max)
+				max = val;
+			if (val < min)
+				min = val;
 			return;
 		}
-		for(int i=0; i<4; i++) {
-			if(op[i] > 0) {
+
+		for (int i = 0; i < 4; i++) {
+			if (op[i] > 0) {
 				op[i]--;
-				recur(n+1,cal(i,val,a[n]));
+				recur(cal(val, nums[idx], i), idx + 1);
 				op[i]++;
 			}
 		}
 	}
-	
-	static int cal(int n, int f, int s) {
-		if(n == 0)return f + s;
-		if(n == 1)return f - s;
-		if(n == 2)return f * s;
-		return f / s;
+
+	public static int cal(int val, int val2, int i) {
+		if (i == 0)
+			return val + val2;
+		if (i == 1)
+			return val - val2;
+		if (i == 2)
+			return val * val2;
+		else
+			return val / val2;
 	}
+
 }
