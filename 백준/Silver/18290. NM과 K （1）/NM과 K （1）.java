@@ -20,21 +20,21 @@ public class Main {
                 map[i][j] = sc.nextInt();
             }
         }
-        solve(0, 0, 0, 0);
+        solve(0, 0);
         System.out.println(ans);
     }
 
-    static public void solve(int r, int c, int cnt, int sum) {
+    static public void solve(int cnt, int sum) {
         if (cnt == K) {
             ans = Math.max(ans, sum);
             return;
         }
-        for (int i = r; i < N; i++) {
-            for (int j = c; j < M; j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
                 if (!visited[i][j]) {
                     if(isValid(i, j)) {
                         visited[i][j] = true;
-                        solve(r, c , cnt + 1, sum + map[i][j]);
+                        solve(cnt + 1, sum + map[i][j]);
                         visited[i][j] = false;
                     }
                 }
