@@ -1,27 +1,20 @@
 class Solution {
-    public int solution(int n, long l, long r) {                
-        return (int)(cal(n, r - 1) - cal(n, l - 2));
-    }
-    
-    public long cal(int n, long k) {
-        if (n <= 1) {
-            if (k < 2) return k + 1;            
-            return k;            
+    public int solution(int n, long l, long r) {
+        int answer = 0;
+
+        for (long i = l; i <= r; i++) {
+            answer += is1(n, i - 1);
         }
-        
-        long len = (long)Math.pow(5, n - 1);
-        long d = k / len;
-        long r = k % len;
-        
-        long res = 0;
-        if (d == 2) {
-            res = 2 * (long)Math.pow(4, n - 1);            
-            return res;
-        }
-        long add = (d > 2 ? d - 1 : d) * (long)Math.pow(4, n - 1);        
-        res = cal(n - 1, r) + add;        
-        return res;
-        
-        
+
+        return answer;
     }
+
+    int is1(int n, long l) {
+        if (n == 0 || l == 0)
+            return 1;
+        if (l % 5 == 2)
+            return 0;
+        return is1(n - 1, l / 5);
+    }
+
 }
