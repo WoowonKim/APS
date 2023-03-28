@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {//[23888] 등차수열과 쿼리
-    static int a, d;
+    static int a, d, gcd;
 
     public static void main(String[] args) throws Exception {
         //System.setIn(new FileInputStream("./APS/input.txt"));
@@ -12,6 +12,7 @@ public class Main {//[23888] 등차수열과 쿼리
         StringTokenizer stk = new StringTokenizer(br.readLine());
         a = Integer.parseInt(stk.nextToken());
         d = Integer.parseInt(stk.nextToken());
+        gcd = getGcd(a, d);
         int T = Integer.parseInt(br.readLine());
 
         while (T-- > 0) {
@@ -28,11 +29,11 @@ public class Main {//[23888] 등차수열과 쿼리
         if (q == 1) {
             return a * (r - l + 1) + d * ((r + l - 2) * (r - l + 1) / 2);
         } else {
-            return l == r ? a + (l - 1) * d : gcd(a, d);
+            return l == r ? a + (l - 1) * d : gcd;
         }
     }
 
-    private static long gcd(int a, int b) {
-        return b == 0 ? a : gcd(b, a % b);
+    private static int getGcd(int a, int b) {
+        return b == 0 ? a : getGcd(b, a % b);
     }
 }
