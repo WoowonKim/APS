@@ -5,7 +5,6 @@ def g(x, y):
         return x
     return g(y, x % y)
 
-
 a, d = map(int, sys.stdin.readline().split())
 q = int(sys.stdin.readline())
 k = g(a, d)
@@ -17,7 +16,7 @@ for i in range(q):
 
     if x == 1:
         n = r - l + 1
-        res = int((n * (start + end))/2)
+        res = int(a * (r - l + 1) + d * ((r + l - 2) * (r - l + 1) / 2))
         print(res)
 
     else:
