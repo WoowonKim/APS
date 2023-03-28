@@ -17,7 +17,7 @@ for i in range(q):
 
     if x == 1:
         n = r - l + 1
-        res = int(n * (start + end)/2)
+        res = int((n * (start + end))/2)
         print(res)
 
     else:
