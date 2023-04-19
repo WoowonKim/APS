@@ -8,7 +8,7 @@
 
 ### 분류
 
-백트래킹(backtracking), 브루트포스 알고리즘(bruteforcing), 조합론(combinatorics), 수학(math)
+백트래킹, 브루트포스 알고리즘, 조합론, 수학
 
 ### 문제 설명
 
