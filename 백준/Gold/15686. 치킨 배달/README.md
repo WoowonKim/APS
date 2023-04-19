@@ -8,7 +8,7 @@
 
 ### 분류
 
-브루트포스 알고리즘(bruteforcing), 구현(implementation)
+백트래킹, 브루트포스 알고리즘, 구현
 
 ### 문제 설명
 
