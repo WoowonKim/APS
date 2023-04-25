@@ -21,7 +21,6 @@ public class Main {
 			}
 		}
 		System.out.println(dp[K]);
-		sc.close();
 	}
 
 }
