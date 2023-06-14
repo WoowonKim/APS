@@ -1,12 +1,14 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
 
-    static boolean[] babies;
+    static int[] babies;
+    static int[] buffer;
     static int N, M, K;
 
     public static void main(String[] args) throws Exception {
@@ -16,24 +18,27 @@ public class Main {
         M = Integer.parseInt(stk.nextToken());
         K = Integer.parseInt(stk.nextToken());
 
-        babies = new boolean[N];
-        for (int i = 0; i < M; i++) babies[Integer.parseInt(br.readLine())] = true;
+        babies = new int[N];
+        buffer = new int[N];
+        for (int i = 0; i < M; i++) babies[Integer.parseInt(br.readLine())] = 1;
 
         for (int i = 0; i < K; i++) eungeh();
 
-        System.out.println(M);
+        System.out.println(Arrays.stream(babies).sum());
     }
 
     private static void eungeh() {
-        List<Integer> arr = new ArrayList<>();
+        Arrays.fill(buffer, 0);
         for(int i = 0; i < N; i++) {
             int next = (i + 1) % N;
             int prev = (i + N - 1) % N;
-            if(babies[next] && babies[prev]) continue;
-            if(babies[next] || babies[prev]) arr.add(i);
+            if(babies[i] == 1) {
+                buffer[next] ^= 1;
+                buffer[prev] ^= 1;
+            }
         }
-        babies = new boolean[N];
-        arr.forEach(baby -> babies[baby] = true);
-        M = arr.size();
+        int[] temp = babies;
+        babies = buffer;
+        buffer = temp;
     }
 }
