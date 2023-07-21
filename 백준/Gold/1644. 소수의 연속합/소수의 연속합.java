@@ -20,7 +20,7 @@ public class Main {
         int left = 0, right = 0;
         int ans = 0, sum = 2;
         int size = primes.size();
-        while (left < size) {
+        while (left < size && left <= right) {
             if (sum == n) {
                 ans++;
                 sum -= primes.get(left++);
