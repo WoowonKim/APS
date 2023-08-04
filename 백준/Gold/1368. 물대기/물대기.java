@@ -6,12 +6,11 @@ import java.util.*;
 class Main {
 
     static class Edge implements Comparable<Edge> {
-        int from;
+
         int to;
         int cost;
 
-        public Edge(int from, int to, int cost) {
-            this.from = from;
+        public Edge(int to, int cost) {
             this.to = to;
             this.cost = cost;
         }
@@ -29,12 +28,12 @@ class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
         for (int i = 0; i <= N; i++) graph.add(new ArrayList<>());
-        for (int i = 1; i <= N; i++) graph.get(0).add(new Edge(0, i, Integer.parseInt(br.readLine())));
+        for (int i = 1; i <= N; i++) graph.get(0).add(new Edge(i, Integer.parseInt(br.readLine())));
         for (int i = 1; i <= N; i++) {
             StringTokenizer stk = new StringTokenizer(br.readLine());
             for (int j = 1; j <= N; j++) {
                 int cost = Integer.parseInt(stk.nextToken());
-                if (i != j) graph.get(i).add(new Edge(i, j, cost));
+                if (i != j) graph.get(i).add(new Edge(j, cost));
             }
         }
     }
