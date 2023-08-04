@@ -56,7 +56,7 @@ class Main {
             visited[curr.to] = true;
             ans += curr.cost;
             cnt++;
-            queue.addAll(graph.get(curr.to));
+            for (Edge edge : graph.get(curr.to)) if (!visited[edge.to]) queue.add(edge);
         }
     }
 }
