@@ -49,12 +49,14 @@ class Main {
         PriorityQueue<Edge> queue = new PriorityQueue<>(graph.get(0));
         boolean[] visited = new boolean[N + 1];
         visited[0] = true;
-        while (!queue.isEmpty()) {
+        int cnt = 0;
+        while (cnt < N) {
             Edge curr = queue.poll();
             if(visited[curr.to]) continue;
             visited[curr.to] = true;
             ans += curr.cost;
-            for (Edge edge : graph.get(curr.to)) if (!visited[edge.to]) queue.add(edge);
+            cnt++;
+            queue.addAll(graph.get(curr.to));
         }
     }
 }
